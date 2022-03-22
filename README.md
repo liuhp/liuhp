@@ -1,6 +1,5 @@
 ### Hi there 👋
 
-- 🔭  A salted 🐟....
 - 🌱 **HTML5**/**CSS3**/**ES6**/**TypeScript**/**Vue2**/**Vue3**/
 - 📫 Email: [2190098961@qq.com](mailto:2190098961@qq.com)
 
