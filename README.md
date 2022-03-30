@@ -6,4 +6,4 @@
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=liuhp&show_icons=true&count_private=true&theme=vue)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=liuhp&layout=compact&theme=vue)
 
-![XDD's github contribution grid snake](https://raw.githubusercontent.com/XDD/XDD/dist/github-contribution-grid-snake.svg)
+![XDD's github contribution grid snake](https://raw.githubusercontent.com/liuhp/liuhp/dist/github-contribution-grid-snake.svg)
