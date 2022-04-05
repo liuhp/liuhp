@@ -1,8 +1,8 @@
 ### Hi there 👋
 
-- 🌱 **HTML5**/**CSS3**/**ES6**/**TypeScript**/**Vue2**/**Vue3**/**Webpack**/
+- 🌱 **HTML5**, **CSS3**, **ES6**, **TypeScript**, **Vue 2**, **Vue 3**, **Webpack**
 - 📫 Email: [2190098961@qq.com](mailto:2190098961@qq.com)
-- 🔨 **Webpack**/**Git**/**Http**/**Https**/**TCP/IP**/
+- 🔨 **Webpack**, **Git**, **Http**, **Https**, **TCP/IP**
 - 🏸 Badminton
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=liuhp&show_icons=true&count_private=true&theme=vue)
