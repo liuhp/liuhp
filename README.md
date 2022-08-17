@@ -8,7 +8,7 @@
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> 
-  🌱: 
+  🌱:
   
 [![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
 [![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
@@ -19,14 +19,12 @@
 [![Less](https://img.shields.io/badge/-Less-00BCD4?style=flat-square&logo=less&logoColor=ffffff)](https://less.bootcss.com/)
 
   🔨: 
-  
 [![Webpack](https://img.shields.io/badge/-Webpack-%232C3A42?style=flat-square&logo=webpack)](https://www.webpackjs.com/)
 [![NPM](https://img.shields.io/badge/-NPM-cb3837?style=flat-square&logo=npm&logoColor=white)](https://npmjs.com/)
 [![Git](https://img.shields.io/badge/-Git-f05032?style=flat-square&logo=git&logoColor=white)](https://git-scm.com/)
 [![Nginx](https://img.shields.io/badge/-Nginx-%232C3A42?style=flat-square&logo=Nginx)](https://www.nginx.com/)
   
   🦁: 
-  
   [![C](https://img.shields.io/badge/-C-%232C3A42?style=flat-square&logo=C)](https://www.runoob.com/cprogramming/c-tutorial.html)
   [![Python](https://img.shields.io/badge/-Python-%232C3A42?style=flat-square&logo=python)](https://www.python.org/)
   [![Matlab](https://img.shields.io/badge/-Matlab-%232C3A42?style=flat-square&logo=Matlab)](https://www.w3cschool.cn/matlab/)
