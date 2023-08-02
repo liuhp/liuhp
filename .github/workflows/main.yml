@@ -42,7 +42,3 @@ jobs:
           keep_history: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/upload-artifact@v3
-        with:
-          name: my-artifact
-          path: ${{ github.workspace }}/dist/
