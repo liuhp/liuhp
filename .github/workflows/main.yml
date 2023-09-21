@@ -19,6 +19,7 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    name: Generate animation
 
     steps:
       # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
@@ -26,10 +27,17 @@ jobs:
         uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-blue.svg?color_snake=orange&color_dots=#ebedf0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+          # svg_out_path: dist/github-contribution-grid-snake.svg
 
-      - name: Set current date as env variable
-        run: echo "DATE=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_ENV
+      # - name: Set current date as env variable
+      #   run: echo "DATE=$(date +'%Y-%m-%d %H:%M')" >> $GITHUB_ENV
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/dist/
 
       # push the content of <build_dir> to a branch
       # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
