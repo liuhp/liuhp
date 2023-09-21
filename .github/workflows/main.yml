@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   push-dist:
     runs-on: ubuntu-latest
-    needs: [animation]
+    needs: [generate]
     name: Push dist
     steps:
       - uses: actions/download-artifact@v3
