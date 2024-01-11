@@ -20,6 +20,7 @@
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> 
 Front end Languages: 
+
 [![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
 [![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://www.w3.org/Style/CSS/)
 [![JavaScript](https://img.shields.io/badge/-JavaScript-FF9800?style=flat-square&logo=javascript&logoColor=white)](https://www.ecma-international.org/)
