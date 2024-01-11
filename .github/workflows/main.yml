@@ -1,9 +1,9 @@
 name: generate animation
 
 on:
-  # run automatically every day
+  # run automatically every 3 days
   schedule:
-    - cron: "0 */24 * * *" 
+    - cron: "0 0 */3 * *" 
   
   # allows to manually run the job at any time
   workflow_dispatch:
@@ -11,38 +11,139 @@ on:
   # run on every push on the master branch
   push:
     branches:
-    - main
-    
+      - main
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   
 
 jobs:
-  generate:
+  animation:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: Generate animation
 
     steps:
-      # generates a snake game from a github user (<github_user_name>) contributions graph, output a svg animation at <svg_out_path>
       - name: generate github-contribution-grid-snake.svg
         uses: Platane/snk@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-blue.svg?color_snake=#F6A405&color_dots=#ebedf0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-          # svg_out_path: dist/github-contribution-grid-snake.svg
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            dist/github-contribution-grid-snake-blue.svg?color_snake=orange&color_dots=#ebedf0,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
 
-      # push the content of <build_dir> to a branch
-      # the content will be available at https://raw.githubusercontent.com/<github_user>/<repository>/<target_branch>/<file> , or as github page
-      - name: push github-contribution-grid-snake.svg to the output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/dist/
+  
+  github-metrics:
+    runs-on: ubuntu-latest
+    name: Generate Github Metrics
+    permissions:
+      contents: write
+    steps:
+      - name: Generate Github metrics (left)
+        uses: lowlighter/metrics@master
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          output_action: none
+          output_condition: data-changed
+          filename: github-metrics-left.svg
+          
+          # Options
+          user: liuhp
+          template: classic
+          base: header, activity, community, metadata
+          base_indepth: yes
+          config_octicon: yes
+          config_timezone: Asia/Shanghai
+          config_twemoji: yes
+          plugin_activity: yes
+          plugin_activity_days: 365
+          plugin_activity_filter: all
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_skipped: liuhp.github.io,liuhp
+          plugin_activity_visibility: all
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 60
+          plugin_languages_analysis_timeout_repositories: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_details: lines,percentage
+          plugin_languages_ignored: html,css
+          plugin_languages_indepth: true
+          plugin_languages_limit: 8
+          plugin_languages_recent_categories: markup,programming
+          plugin_languages_recent_load: 300
+          plugin_languages_sections: most-used
+          plugin_languages_skipped: liuhp.github.io
+          plugin_languages_threshold: 0%
+          commits_authoring: liuhp, liuhp3@chinatelecom.cn, 2190098961@qq.com
+          repositories_forks: yes
+
+      - name: Generate Github metrics (right)
+        uses: lowlighter/metrics@master
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          output_action: none
+          output_condition: data-changed
+          filename: github-metrics-right.svg
+
+          # Options
+          user: liuhp
+          template: classic
+          base: ""
+          config_order: achievements
+          config_timezone: Asia/Shanghai
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_ignored: automator, explorer
+          plugin_achievements_limit: 6
+          plugin_achievements_secrets: yes
+          plugin_achievements_threshold: B
+          plugin_notable: yes
+          plugin_notable_from: all
+          plugin_notable_indepth: yes
+          plugin_notable_types: commit
+          plugin_stars: yes
+          plugin_stars_limit: 3
+
+      - run: |
+          mkdir -p ${{ github.workspace }}/dist/metrics
+          cp /metrics_renders/*.svg ${{ github.workspace }}/dist/metrics
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/dist/
+
+
+  push-dist:
+    runs-on: ubuntu-latest
+    needs: [animation, github-metrics]
+    name: Push dist
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/dist/
+
+      - name: Set current date as env variable
+        run: echo "DATE=$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')" >> $GITHUB_ENV
+
+      - name: push dist file to the output branch
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: dist
           build_dir: dist
-          commit_message: "generate github contribution snake svg at ${{ env.DATE }}"
+          commit_message: "Generate README dist file at ${{ env.DATE }}"
           keep_history: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: my-artifact
+
  
